@@ -39,8 +39,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_fjrip"]
-radius = 10.6301
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g2els"]
+height = 44.0
 
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_g2els")
@@ -54,5 +54,17 @@ autoplay = "idle"
 frame_progress = 0.321856
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(71, 24)
-shape = SubResource("CircleShape2D_fjrip")
+position = Vector2(71, 10)
+shape = SubResource("CapsuleShape2D_g2els")
+
+[node name="Dialog" type="Label" parent="."]
+offset_left = 49.0
+offset_top = -30.0
+offset_right = 89.0
+offset_bottom = -7.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(71, 12)
+zoom = Vector2(4, 4)

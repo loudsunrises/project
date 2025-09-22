@@ -4,6 +4,7 @@ extends CharacterBody2D
 const SPEED = 130.0
 const JUMP_VELOCITY = 0.0
 
+
 enum PlayerState {
 	Moving,
 	InBed,
@@ -17,8 +18,11 @@ enum PlayerState {
 var player_state := PlayerState.InBed
 
 #signal player_state_changed(state)
-
+@onready var camera_2d: Camera2D = $Camera2D
 @onready var dialog: Label = $Dialog
+
+@export var min_zoom : float = 4.0
+@export var max_zoom : float = 8.0
 
 func _ready() -> void:
 	dialog.visible = true
@@ -52,6 +56,12 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
+func _input(event: InputEvent) -> void:
+	if event is InputEventKey:
+		if event.is_action_pressed("+"):
+			camera_2d.zoom = Vector2(max_zoom, max_zoom)
+		elif event.is_action_pressed("-"):
+			camera_2d.zoom = Vector2(min_zoom, min_zoom)
 
 func _on_fridge_body_entered(body: Node2D) -> void:
 	player_state = PlayerState.InFridge

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://7cgsasybcd18"]
+[gd_scene load_steps=19 format=4 uid="uid://7cgsasybcd18"]
 
 [ext_resource type="PackedScene" uid="uid://btamyw4txrvit" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="Texture2D" uid="uid://c4hpih1ee5gsg" path="res://sprites/spritesheet.png" id="4_lbhrr"]
@@ -7,6 +7,9 @@
 [ext_resource type="AudioStream" uid="uid://bc62vreuikch0" path="res://Music/dry-thunder-364468.mp3" id="7_u5sy4"]
 [ext_resource type="Script" uid="uid://j7f6a20vqu5m" path="res://scripts/interactble_areas.gd" id="8_gee14"]
 [ext_resource type="Script" uid="uid://dpok8bcanjp2q" path="res://scripts/game_manager.gd" id="9_0tnpc"]
+[ext_resource type="PackedScene" uid="uid://g8kn4thbgeo4" path="res://scenes/plant.tscn" id="9_vtaks"]
+[ext_resource type="Script" uid="uid://bsdc6xfm3cglh" path="res://scripts/canvas_layer.gd" id="10_vtaks"]
+[ext_resource type="FontFile" uid="uid://oat1w7uvyamo" path="res://fonts/Special_Elite/SpecialElite-Regular.ttf" id="11_kvpfn"]
 [ext_resource type="AudioStream" uid="uid://dptsngylj68ji" path="res://Music/melancholic-tranquility-364766.mp3" id="23_bt5mj"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_yqjtg"]
@@ -87,20 +90,9 @@ script = ExtResource("9_0tnpc")
 
 [node name="player" parent="." instance=ExtResource("1_uwrxv")]
 z_index = 1
-position = Vector2(-124, 29)
+position = Vector2(-102, 22)
 collision_mask = 2
-
-[node name="Dialog" type="Label" parent="player"]
-offset_left = 51.0
-offset_top = -41.0
-offset_right = 91.0
-offset_bottom = -18.0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Camera2D" type="Camera2D" parent="player"]
-position = Vector2(129, -12)
-zoom = Vector2(4, 4)
+max_zoom = 9.0
 
 [node name="boundaries" type="StaticBody2D" parent="."]
 position = Vector2(13, 58)
@@ -132,7 +124,7 @@ polygon = PackedVector2Array(-53.005264, 32, 391.8158, 32, 391.9053, 59.913155, 
 [node name="Layer0" type="TileMapLayer" parent="TileMap"]
 use_parent_material = true
 scale = Vector2(2, 2)
-tile_map_data = PackedByteArray("AAD9/wAAAAAAAAYAAAD9/wEAAAAAAAcAAAD+/wAAAAABAAYAAAD+/wEAAAABAAcAAAD//wEAAAACAAcAAAD//wAAAAAAAAEAAAAAAAAABgAAAAAAAAABAAAABgABAAAAAAACAAEAAAAEAAIAAAADAAEAAAAFAAIAAAACAAAAAAAEAAEAAAADAP//AAAFAAAAAAADAAAAAAAFAAEAAAAHAAAAAAACAAQAAAAHAAEAAAACAAUAAAAFAAAAAAAAAAQAAAAFAAEAAAAAAAUAAAAGAAAAAAABAAQAAAAGAAEAAAABAAUAAAAKAAAAAAAHAAEAAAAKAAEAAAAHAAIAAAALAAAAAAAHAAQAAAAOAAAAAAABAAEAABAOAAEAAAAEAAUAAAAPAAAAAAAFAAQAAAAPAAEAAAAFAAUAAAALAAEAAAAHAAUAAAAMAAAAAAAIAAQAAAAMAAEAAAAIAAUAAAANAAAAAAAGAAQAAAANAAEAAAAGAAUAAAAIAAAAAAADAAQAAAAIAAEAAAADAAUAAAA=")
+tile_map_data = PackedByteArray("AAD9/wAAAAAAAAYAAAD9/wEAAAAAAAcAAAD+/wAAAAABAAYAAAD+/wEAAAABAAcAAAD//wEAAAACAAcAAAD//wAAAAAAAAEAAAAAAAAABgAAAAAAAAABAAAABgABAAAAAAACAAEAAAAEAAIAAAADAAEAAAAFAAIAAAACAAAAAAAEAAEAAAADAP//AAAFAAAAAAADAAAAAAAFAAEAAAAHAAAAAAACAAQAAAAHAAEAAAACAAUAAAAFAAEAAAAAAAUAAAAGAAAAAAABAAQAAAAGAAEAAAABAAUAAAAKAAAAAAAHAAEAAAAKAAEAAAAHAAIAAAAOAAAAAAABAAEAABAOAAEAAAAEAAUAAAAPAAAAAAAFAAQAAAAPAAEAAAAFAAUAAAALAAEAAAAHAAUAAAAMAAAAAAAIAAQAAAAMAAEAAAAIAAUAAAANAAAAAAAGAAQAAAANAAEAAAAGAAUAAAAIAAAAAAADAAQAAAAIAAEAAAADAAUAAAALAAAAAAAHAAQAAAA=")
 tile_set = SubResource("TileSet_bt5mj")
 
 [node name="rain" type="AudioStreamPlayer2D" parent="."]
@@ -155,11 +147,35 @@ script = ExtResource("8_gee14")
 
 [node name="Fridge" type="Area2D" parent="InteractbleAreas"]
 position = Vector2(271, 35)
-collision_layer = 2
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractbleAreas/Fridge"]
 position = Vector2(1, -2)
 shape = SubResource("RectangleShape2D_u5sy4")
+
+[node name="Plant" parent="InteractbleAreas" instance=ExtResource("9_vtaks")]
+offset_left = 323.0
+offset_top = 22.0
+offset_right = 353.0
+offset_bottom = 38.0
+message_text = "… Dead… I keep forgetting to water it…"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("10_vtaks")
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 72.0
+offset_top = 77.0
+offset_right = 942.0
+offset_bottom = 187.0
+theme_override_fonts/font = ExtResource("11_kvpfn")
+theme_override_font_sizes/font_size = 45
+text = "adslksajdlksad"
+horizontal_alignment = 1
+
+[node name="Timer" type="Timer" parent="CanvasLayer"]
+wait_time = 3.0
+one_shot = true
 
 [connection signal="body_entered" from="InteractbleAreas/Fridge" to="player" method="_on_fridge_body_entered"]
 [connection signal="body_exited" from="InteractbleAreas/Fridge" to="player" method="_on_fridge_body_exited"]
