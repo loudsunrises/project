@@ -1,15 +1,29 @@
-[gd_scene load_steps=19 format=4 uid="uid://7cgsasybcd18"]
+[gd_scene load_steps=43 format=4 uid="uid://7cgsasybcd18"]
 
+[ext_resource type="Script" uid="uid://yxcxguixvey" path="res://scenes/game.gd" id="1_5newe"]
 [ext_resource type="PackedScene" uid="uid://btamyw4txrvit" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="Texture2D" uid="uid://c4hpih1ee5gsg" path="res://sprites/spritesheet.png" id="4_lbhrr"]
 [ext_resource type="Texture2D" uid="uid://cvgnfuxfa78w3" path="res://sprites/Sprite-0004.png" id="5_iywne"]
 [ext_resource type="AudioStream" uid="uid://d22vy5qo5lt2o" path="res://Music/calming-rain-257596.mp3" id="5_p57ef"]
 [ext_resource type="AudioStream" uid="uid://bc62vreuikch0" path="res://Music/dry-thunder-364468.mp3" id="7_u5sy4"]
+[ext_resource type="Script" uid="uid://ni4g0tkl7njy" path="res://scenes/area_2d.gd" id="8_e1j6l"]
 [ext_resource type="Script" uid="uid://j7f6a20vqu5m" path="res://scripts/interactble_areas.gd" id="8_gee14"]
-[ext_resource type="Script" uid="uid://dpok8bcanjp2q" path="res://scripts/game_manager.gd" id="9_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://g8kn4thbgeo4" path="res://scenes/plant.tscn" id="9_vtaks"]
 [ext_resource type="Script" uid="uid://bsdc6xfm3cglh" path="res://scripts/canvas_layer.gd" id="10_vtaks"]
+[ext_resource type="Script" uid="uid://bk5gtdwts8leq" path="res://scenes/window.gd" id="11_ca42v"]
 [ext_resource type="FontFile" uid="uid://oat1w7uvyamo" path="res://fonts/Special_Elite/SpecialElite-Regular.ttf" id="11_kvpfn"]
+[ext_resource type="Texture2D" uid="uid://b0o0cvanf35t6" path="res://sprites/Fridge.PNG" id="11_rysoc"]
+[ext_resource type="Texture2D" uid="uid://5bavhvbvmvsn" path="res://sprites/Window.PNG" id="12_ir15t"]
+[ext_resource type="Texture2D" uid="uid://bvo5pti0gv222" path="res://sprites/toaster.PNG" id="12_rysoc"]
+[ext_resource type="Texture2D" uid="uid://5df30iglffb5" path="res://sprites/IMG_4332.PNG" id="12_trtic"]
+[ext_resource type="Texture2D" uid="uid://cbgg0365ijw32" path="res://sprites/IMG_4333.PNG" id="13_ir15t"]
+[ext_resource type="Texture2D" uid="uid://diu7gqtk2tda4" path="res://sprites/Journal and Phone.PNG" id="13_ssvqc"]
+[ext_resource type="Texture2D" uid="uid://dutw2nb5jm4dn" path="res://sprites/umbrella stand.PNG" id="14_1kice"]
+[ext_resource type="Texture2D" uid="uid://bic3jxhxaqdbp" path="res://sprites/IMG_4334.PNG" id="14_ca42v"]
+[ext_resource type="Texture2D" uid="uid://tgvxldxa8qqq" path="res://sprites/kitty.png" id="15_pl11u"]
+[ext_resource type="Texture2D" uid="uid://c0f42bmm6xqtu" path="res://sprites/Alarm clock.png" id="16_37s47"]
+[ext_resource type="Texture2D" uid="uid://chensgob5kiq" path="res://sprites/zoom in 1.PNG" id="16_264po"]
+[ext_resource type="Script" uid="uid://cobeiopq26f2f" path="res://scenes/alarmclock.gd" id="17_bt5mj"]
 [ext_resource type="AudioStream" uid="uid://dptsngylj68ji" path="res://Music/melancholic-tranquility-364766.mp3" id="23_bt5mj"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_yqjtg"]
@@ -82,20 +96,66 @@ texture = ExtResource("5_iywne")
 sources/0 = SubResource("TileSetAtlasSource_iywne")
 sources/6 = SubResource("TileSetAtlasSource_p57ef")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_u5sy4"]
-size = Vector2(28, 54)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pl11u"]
+size = Vector2(435, 260)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e1j6l"]
+size = Vector2(89.25, 105.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bhx41"]
+size = Vector2(157.25, 79)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e1j6l"]
+radius = 135.5
+height = 564.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pl11u"]
+radius = 54.0
+height = 228.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qnb83"]
+size = Vector2(132.5, 91)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sww3w"]
+size = Vector2(170.25, 136)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_suyxu"]
+size = Vector2(123, 56)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bt5mj"]
+atlas = ExtResource("16_37s47")
+region = Rect2(0, 0, 2048, 2048)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e1j6l"]
+atlas = ExtResource("16_37s47")
+region = Rect2(2048, 0, 2048, 2048)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pl11u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bt5mj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e1j6l")
+}],
+"loop": true,
+"name": &"run",
+"speed": 12.0
+}]
 
 [node name="game" type="Node2D"]
-script = ExtResource("9_0tnpc")
+script = ExtResource("1_5newe")
 
 [node name="player" parent="." instance=ExtResource("1_uwrxv")]
-z_index = 1
-position = Vector2(-102, 22)
+z_index = 2
+position = Vector2(-4010, -189)
 collision_mask = 2
 max_zoom = 9.0
 
 [node name="boundaries" type="StaticBody2D" parent="."]
-position = Vector2(13, 58)
+position = Vector2(-3538, -197)
+scale = Vector2(4, 4)
 collision_layer = 2
 
 [node name="bottom boundary" type="CollisionShape2D" parent="boundaries"]
@@ -103,79 +163,229 @@ position = Vector2(-2, 10)
 shape = SubResource("WorldBoundaryShape2D_yqjtg")
 
 [node name="left boundary" type="CollisionShape2D" parent="boundaries"]
-position = Vector2(-62, -36)
+position = Vector2(-80.75, -36.25)
 rotation = 1.5782
 shape = SubResource("WorldBoundaryShape2D_lbhrr")
 
 [node name="right boundary" type="CollisionShape2D" parent="boundaries"]
-position = Vector2(509, -9)
+position = Vector2(1490.75, -57.5)
 shape = SubResource("WorldBoundaryShape2D_iywne")
 
 [node name="floor" type="Polygon2D" parent="."]
 z_index = -1
-position = Vector2(-52.000053, 0)
+position = Vector2(-3506.033, -386.1427)
 rotation = 0.0014689598
-scale = Vector2(2, 2)
-color = Color(0.219501, 0.219501, 0.219501, 1)
-polygon = PackedVector2Array(-53.005264, 32, 391.8158, 32, 391.9053, 59.913155, -53, 60)
+scale = Vector2(12.199671, 9.060534)
+color = Color(0.24705882, 0.24705882, 0.24705882, 1)
+polygon = PackedVector2Array(-53.005264, 32, 235.45264, 32.00006, 523.5481, 32.23097, 514.9662, 63.058002, -53, 60)
 
 [node name="TileMap" type="Node" parent="."]
 
 [node name="Layer0" type="TileMapLayer" parent="TileMap"]
 use_parent_material = true
+position = Vector2(4085, 655)
 scale = Vector2(2, 2)
 tile_map_data = PackedByteArray("AAD9/wAAAAAAAAYAAAD9/wEAAAAAAAcAAAD+/wAAAAABAAYAAAD+/wEAAAABAAcAAAD//wEAAAACAAcAAAD//wAAAAAAAAEAAAAAAAAABgAAAAAAAAABAAAABgABAAAAAAACAAEAAAAEAAIAAAADAAEAAAAFAAIAAAACAAAAAAAEAAEAAAADAP//AAAFAAAAAAADAAAAAAAFAAEAAAAHAAAAAAACAAQAAAAHAAEAAAACAAUAAAAFAAEAAAAAAAUAAAAGAAAAAAABAAQAAAAGAAEAAAABAAUAAAAKAAAAAAAHAAEAAAAKAAEAAAAHAAIAAAAOAAAAAAABAAEAABAOAAEAAAAEAAUAAAAPAAAAAAAFAAQAAAAPAAEAAAAFAAUAAAALAAEAAAAHAAUAAAAMAAAAAAAIAAQAAAAMAAEAAAAIAAUAAAANAAAAAAAGAAQAAAANAAEAAAAGAAUAAAAIAAAAAAADAAQAAAAIAAEAAAADAAUAAAALAAAAAAAHAAQAAAA=")
 tile_set = SubResource("TileSet_bt5mj")
 
 [node name="rain" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-3256, -516)
 stream = ExtResource("5_p57ef")
 volume_db = -17.954
 autoplay = true
+max_distance = 1000000.0
+parameters/looping = false
 
 [node name="music" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-3305, -440)
 stream = ExtResource("23_bt5mj")
 autoplay = true
+max_distance = 1000000.0
+parameters/looping = false
 
 [node name="thunder" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(-2, 1)
+position = Vector2(-2768, -691)
 stream = ExtResource("7_u5sy4")
 volume_db = -6.599
 autoplay = true
+max_distance = 1000000.0
+parameters/looping = false
 
-[node name="InteractbleAreas" type="Node" parent="."]
+[node name="Area2D" type="Area2D" parent="."]
+z_index = 1
+position = Vector2(-3278, -604)
+script = ExtResource("8_e1j6l")
+
+[node name="Window" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-11.5, 0)
+shape = SubResource("RectangleShape2D_pl11u")
+
+[node name="Alarm" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-718.625, 236.125)
+shape = SubResource("RectangleShape2D_e1j6l")
+
+[node name="Journal" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(333, 267)
+shape = SubResource("RectangleShape2D_bhx41")
+
+[node name="Fridge" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(3979, 167)
+shape = SubResource("CapsuleShape2D_e1j6l")
+
+[node name="Umbrella" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(5319, 327)
+shape = SubResource("CapsuleShape2D_pl11u")
+
+[node name="Toaster" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(4587.75, 129.5)
+shape = SubResource("RectangleShape2D_qnb83")
+
+[node name="Plant" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(2401.875, 222)
+shape = SubResource("RectangleShape2D_sww3w")
+
+[node name="Kitty" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-359.5, 393)
+shape = SubResource("RectangleShape2D_suyxu")
+
+[node name="alarmclock" type="AnimatedSprite2D" parent="Area2D"]
+position = Vector2(-722, 237)
+scale = Vector2(0.06277199, 0.062771976)
+sprite_frames = SubResource("SpriteFrames_pl11u")
+animation = &"run"
+autoplay = "run"
+frame_progress = 0.7768379
+script = ExtResource("17_bt5mj")
+
+[node name="InteractableAreas" type="Node" parent="."]
 script = ExtResource("8_gee14")
 
-[node name="Fridge" type="Area2D" parent="InteractbleAreas"]
-position = Vector2(271, 35)
-collision_layer = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractbleAreas/Fridge"]
-position = Vector2(1, -2)
-shape = SubResource("RectangleShape2D_u5sy4")
-
-[node name="Plant" parent="InteractbleAreas" instance=ExtResource("9_vtaks")]
-offset_left = 323.0
-offset_top = 22.0
-offset_right = 353.0
-offset_bottom = 38.0
+[node name="Plant" parent="InteractableAreas" instance=ExtResource("9_vtaks")]
+anchors_preset = -1
+anchor_left = -0.06282552
+anchor_right = -0.06282552
+anchor_bottom = 0.032407407
+offset_left = -887.625
+offset_top = -452.0
+offset_right = -638.25
+offset_bottom = -319.0
+stretch_mode = 2
 message_text = "… Dead… I keep forgetting to water it…"
+metadata/_edit_use_anchors_ = true
+
+[node name="Window" type="TextureRect" parent="InteractableAreas"]
+offset_left = -3526.0
+offset_top = -772.0
+offset_right = -3052.0
+offset_bottom = -451.0
+texture = ExtResource("12_ir15t")
+script = ExtResource("11_ca42v")
+message_text = "Another dreary day..."
+
+[node name="Kitty" type="TextureRect" parent="InteractableAreas"]
+offset_left = -3702.0
+offset_top = -224.0
+offset_right = -3571.0
+offset_bottom = -175.0
+texture = ExtResource("15_pl11u")
+script = ExtResource("11_ca42v")
+message_text = "Looks like Cookie hid under the bed again... 
+The storm must've spooked her..."
+
+[node name="Fridge" type="TextureRect" parent="InteractableAreas"]
+offset_left = 553.0
+offset_top = -723.0
+offset_right = 844.0
+offset_bottom = -173.0
+texture = ExtResource("11_rysoc")
+script = ExtResource("11_ca42v")
+message_text = "… Nothing but a half-eaten apple… "
+
+[node name="Toaster" type="TextureRect" parent="InteractableAreas"]
+offset_left = 1230.0
+offset_top = -521.0
+offset_right = 1391.2
+offset_bottom = -428.0
+texture = ExtResource("12_rysoc")
+script = ExtResource("11_ca42v")
+message_text = "Burnt… just my luck…"
+
+[node name="JournalPhone" type="TextureRect" parent="InteractableAreas"]
+offset_left = -3026.0
+offset_top = -379.0
+offset_right = -2861.2559
+offset_bottom = -291.0
+texture = ExtResource("13_ssvqc")
+script = ExtResource("11_ca42v")
+message_text = "Forgot to charge my phone... again..."
+
+[node name="UmbrellaStand" type="TextureRect" parent="InteractableAreas"]
+offset_left = 1981.0
+offset_top = -377.0
+offset_right = 2100.0
+offset_bottom = -184.0
+texture = ExtResource("14_1kice")
+script = ExtResource("11_ca42v")
+message_text = "… Can’t remember where I put my umbrella... "
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+scale = Vector2(1.135, 1.135)
+transform = Transform2D(1.135, 0, 0, 1.135, 0, 0)
 script = ExtResource("10_vtaks")
 
 [node name="Label" type="Label" parent="CanvasLayer"]
-offset_left = 72.0
-offset_top = 77.0
-offset_right = 942.0
-offset_bottom = 187.0
+anchors_preset = -1
+anchor_left = -1.3290001
+anchor_top = -1.299
+anchor_right = -1.3290001
+anchor_bottom = -1.299
+offset_left = 1603.2549
+offset_top = 898.13965
+offset_right = 2473.255
+offset_bottom = 1008.1398
 theme_override_fonts/font = ExtResource("11_kvpfn")
-theme_override_font_sizes/font_size = 45
-text = "adslksajdlksad"
+theme_override_font_sizes/font_size = 33
+text = "text here..."
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ZoomIn1" type="Sprite2D" parent="CanvasLayer"]
+visible = false
+position = Vector2(568, 340)
+scale = Vector2(0.569069, 0.5690691)
+texture = ExtResource("16_264po")
 
 [node name="Timer" type="Timer" parent="CanvasLayer"]
 wait_time = 3.0
 one_shot = true
 
-[connection signal="body_entered" from="InteractbleAreas/Fridge" to="player" method="_on_fridge_body_entered"]
-[connection signal="body_exited" from="InteractbleAreas/Fridge" to="player" method="_on_fridge_body_exited"]
+[node name="Img4332" type="Sprite2D" parent="."]
+position = Vector2(1452, -602)
+texture = ExtResource("12_trtic")
+
+[node name="Img4333" type="Sprite2D" parent="."]
+position = Vector2(-759, -607)
+texture = ExtResource("13_ir15t")
+
+[node name="Img4334" type="Sprite2D" parent="."]
+position = Vector2(-2901, -609)
+texture = ExtResource("14_ca42v")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+position = Vector2(-220, 70)
+color = Color(0.3180198, 0.31801978, 0.31801975, 1)
+
+[connection signal="mouse_entered" from="Area2D" to="Area2D" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="Area2D" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="InteractableAreas/Window" to="InteractableAreas/Window" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="InteractableAreas/Window" to="InteractableAreas/Window" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="InteractableAreas/Kitty" to="InteractableAreas/Kitty" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="InteractableAreas/Kitty" to="InteractableAreas/Kitty" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="InteractableAreas/Fridge" to="InteractableAreas/Fridge" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="InteractableAreas/Fridge" to="InteractableAreas/Fridge" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="InteractableAreas/Toaster" to="InteractableAreas/Toaster" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="InteractableAreas/Toaster" to="InteractableAreas/Toaster" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="InteractableAreas/JournalPhone" to="InteractableAreas/JournalPhone" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="InteractableAreas/JournalPhone" to="InteractableAreas/JournalPhone" method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="InteractableAreas/UmbrellaStand" to="InteractableAreas/UmbrellaStand" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="InteractableAreas/UmbrellaStand" to="InteractableAreas/UmbrellaStand" method="_on_mouse_exited"]

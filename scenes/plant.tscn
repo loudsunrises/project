@@ -1,14 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://g8kn4thbgeo4"]
+[gd_scene load_steps=3 format=3 uid="uid://g8kn4thbgeo4"]
 
-[ext_resource type="Texture2D" uid="uid://c4hpih1ee5gsg" path="res://sprites/spritesheet.png" id="1_odjdt"]
+[ext_resource type="Texture2D" uid="uid://b8wosagsva7qp" path="res://sprites/Plant.PNG" id="1_odjdt"]
 [ext_resource type="Script" uid="uid://dliii7whgi006" path="res://scripts/interactable.gd" id="2_a88lo"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_m5w0e"]
-atlas = ExtResource("1_odjdt")
-region = Rect2(114, 27, 14, 8)
-
 [node name="Plant" type="TextureRect"]
-texture = SubResource("AtlasTexture_m5w0e")
+texture = ExtResource("1_odjdt")
 script = ExtResource("2_a88lo")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

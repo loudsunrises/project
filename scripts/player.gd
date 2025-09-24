@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-const SPEED = 130.0
+const SPEED = 400.0
 const JUMP_VELOCITY = 0.0
 
 
@@ -24,10 +24,16 @@ var player_state := PlayerState.InBed
 @export var min_zoom : float = 4.0
 @export var max_zoom : float = 8.0
 
-func _ready() -> void:
-	dialog.visible = true
-	dialog.text = "Ugh..."
-	dialog.modulate = Color.DARK_SLATE_GRAY
+#this is where i pasted movement code
+@onready var _animated_sprite = $AnimatedSprite2D
+
+func _process(_delta):
+	if Input.is_action_pressed("ui_right"):
+		_animated_sprite.play("run")
+	elif Input.is_action_pressed("ui_left"):
+		_animated_sprite.play("run")
+	else:
+		_animated_sprite.stop()
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
