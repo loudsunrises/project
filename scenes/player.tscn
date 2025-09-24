@@ -68,7 +68,7 @@ texture = SubResource("GradientTexture2D_qhqgy")
 height = 308.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(472, -303)
-zoom = Vector2(0.75, 0.75)
+position = Vector2(497, -346)
+zoom = Vector2(0.63, 0.63)
 limit_left = -4095
 limit_right = 2200
