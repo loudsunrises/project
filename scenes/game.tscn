@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://7cgsasybcd18"]
+[gd_scene load_steps=51 format=3 uid="uid://7cgsasybcd18"]
 
 [ext_resource type="Script" uid="uid://yxcxguixvey" path="res://scenes/game.gd" id="1_5newe"]
 [ext_resource type="PackedScene" uid="uid://btamyw4txrvit" path="res://scenes/player.tscn" id="1_uwrxv"]
@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://g8kn4thbgeo4" path="res://scenes/plant.tscn" id="9_vtaks"]
 [ext_resource type="Texture2D" uid="uid://cxpyyi4a7rrje" path="res://sprites/Fridge Sprite.png" id="10_qnb83"]
 [ext_resource type="Script" uid="uid://bsdc6xfm3cglh" path="res://scripts/canvas_layer.gd" id="10_vtaks"]
-[ext_resource type="Script" uid="uid://bk5gtdwts8leq" path="res://scenes/window.gd" id="11_ca42v"]
 [ext_resource type="FontFile" uid="uid://oat1w7uvyamo" path="res://fonts/Special_Elite/SpecialElite-Regular.ttf" id="11_kvpfn"]
 [ext_resource type="Script" uid="uid://b3gtaghnuy2cn" path="res://scenes/journal_area.gd" id="11_suyxu"]
 [ext_resource type="AudioStream" uid="uid://5unghyvweeq5" path="res://Music/fridge-open-and-close-100149.mp3" id="11_sww3w"]
@@ -29,6 +28,8 @@
 [ext_resource type="Texture2D" uid="uid://chensgob5kiq" path="res://sprites/zoom in 1.PNG" id="16_264po"]
 [ext_resource type="Script" uid="uid://depoik3m5d8fq" path="res://scenes/toaster_area.gd" id="16_qnb83"]
 [ext_resource type="AudioStream" uid="uid://dptsngylj68ji" path="res://Music/melancholic-tranquility-364766.mp3" id="23_bt5mj"]
+[ext_resource type="Script" uid="uid://dkhhghrpcm1dp" path="res://scenes/zoom_in_1.gd" id="23_suyxu"]
+[ext_resource type="PackedScene" uid="uid://bjlwfjxkywprp" path="res://scenes/scene_transition_animation.tscn" id="30_sgl2t"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_yqjtg"]
 distance = 3.0
@@ -38,6 +39,9 @@ distance = -16.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_iywne"]
 normal = Vector2(-1, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sgl2t"]
+size = Vector2(328, 860)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pl11u"]
 size = Vector2(435, 260)
@@ -138,32 +142,9 @@ script = ExtResource("1_5newe")
 
 [node name="player" parent="." instance=ExtResource("1_uwrxv")]
 z_index = 2
-position = Vector2(211, -163)
+position = Vector2(2028, -198)
 collision_mask = 2
 max_zoom = 9.0
-
-[node name="rain" type="AudioStreamPlayer2D" parent="player"]
-position = Vector2(754, -327)
-stream = ExtResource("5_p57ef")
-volume_db = -17.954
-autoplay = true
-max_distance = 1000000.0
-parameters/looping = false
-
-[node name="music" type="AudioStreamPlayer2D" parent="player"]
-position = Vector2(705, -251)
-stream = ExtResource("23_bt5mj")
-autoplay = true
-max_distance = 1000000.0
-parameters/looping = false
-
-[node name="thunder" type="AudioStreamPlayer2D" parent="player"]
-position = Vector2(1242, -502)
-stream = ExtResource("7_u5sy4")
-volume_db = -6.599
-autoplay = true
-max_distance = 1000000.0
-parameters/looping = false
 
 [node name="boundaries" type="StaticBody2D" parent="."]
 position = Vector2(-3538, -197)
@@ -191,12 +172,20 @@ scale = Vector2(12.199671, 9.060534)
 color = Color(0.24705882, 0.24705882, 0.24705882, 1)
 polygon = PackedVector2Array(-53.005264, 32, 235.45264, 32.00006, 523.5481, 32.23097, 514.9662, 63.058002, -53, 60)
 
+[node name="OutsideDetect" type="Area2D" parent="."]
+position = Vector2(28, -28)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OutsideDetect"]
+position = Vector2(2525, -420)
+shape = SubResource("RectangleShape2D_sgl2t")
+
 [node name="Interactive" type="Node" parent="."]
 
 [node name="Window Area" type="Area2D" parent="Interactive"]
 z_index = 1
 position = Vector2(-3278, -604)
 script = ExtResource("8_e1j6l")
+message_text = "Another dreary day..."
 
 [node name="Window" type="CollisionShape2D" parent="Interactive/Window Area"]
 position = Vector2(-11.5, 0)
@@ -208,8 +197,6 @@ offset_top = -168.0
 offset_right = 237.5
 offset_bottom = 153.0
 texture = ExtResource("12_ir15t")
-script = ExtResource("11_ca42v")
-message_text = "Another dreary day..."
 metadata/_edit_use_anchors_ = true
 
 [node name="Fridge Area" type="Area2D" parent="Interactive"]
@@ -233,6 +220,7 @@ volume_db = 6.058
 
 [node name="Journal Area" type="Area2D" parent="Interactive"]
 script = ExtResource("11_suyxu")
+message_text = "Forgot to charge my phone... again..."
 
 [node name="Journal" type="CollisionShape2D" parent="Interactive/Journal Area"]
 position = Vector2(-2945, -337)
@@ -244,12 +232,11 @@ offset_top = -42.0
 offset_right = 83.74414
 offset_bottom = 46.0
 texture = ExtResource("13_ssvqc")
-script = ExtResource("11_ca42v")
-message_text = "Forgot to charge my phone... again..."
 metadata/_edit_use_anchors_ = true
 
 [node name="Umbrella Area" type="Area2D" parent="Interactive"]
 script = ExtResource("13_sgl2t")
+message_text = "… Can’t remember where I put my umbrella... "
 
 [node name="Umbrella" type="CollisionShape2D" parent="Interactive/Umbrella Area"]
 position = Vector2(2041, -277)
@@ -261,12 +248,11 @@ offset_top = -100.0
 offset_right = 59.0
 offset_bottom = 93.0
 texture = ExtResource("14_1kice")
-script = ExtResource("11_ca42v")
-message_text = "… Can’t remember where I put my umbrella... "
 metadata/_edit_use_anchors_ = true
 
 [node name="Plant Area" type="Area2D" parent="Interactive"]
 script = ExtResource("12_pl11u")
+message_text = "… Dead… I keep forgetting to water it…"
 
 [node name="Plant" type="CollisionShape2D" parent="Interactive/Plant Area"]
 position = Vector2(-876.125, -382)
@@ -282,11 +268,13 @@ offset_top = -70.0
 offset_right = 165.5
 offset_bottom = 84.0
 stretch_mode = 2
-message_text = "… Dead… I keep forgetting to water it…"
+script = null
 metadata/_edit_use_anchors_ = true
 
 [node name="Kitty Area" type="Area2D" parent="Interactive"]
 script = ExtResource("14_bhx41")
+message_text = "Looks like Cookie hid under the bed... 
+The storm must've spooked her..."
 
 [node name="Kitty" type="CollisionShape2D" parent="Interactive/Kitty Area"]
 position = Vector2(-3637.5, -211)
@@ -298,14 +286,12 @@ offset_top = -13.0
 offset_right = 66.5
 offset_bottom = 36.0
 texture = ExtResource("15_pl11u")
-script = ExtResource("11_ca42v")
-message_text = "Looks like Cookie hid under the bed... 
-The storm must've spooked her..."
 metadata/_edit_use_anchors_ = true
 
 [node name="Toaster Area" type="Area2D" parent="Interactive"]
 position = Vector2(-3278, -604)
 script = ExtResource("16_qnb83")
+message_text = "Burnt… just my luck…"
 
 [node name="Toaster" type="CollisionShape2D" parent="Interactive/Toaster Area"]
 position = Vector2(4587.75, 129.5)
@@ -317,8 +303,6 @@ offset_top = -46.5
 offset_right = 81.44995
 offset_bottom = 46.5
 texture = ExtResource("12_rysoc")
-script = ExtResource("11_ca42v")
-message_text = "Burnt… just my luck…"
 metadata/_edit_use_anchors_ = true
 
 [node name="Alarm Area" type="Area2D" parent="Interactive"]
@@ -361,9 +345,10 @@ metadata/_edit_use_anchors_ = true
 
 [node name="ZoomIn1" type="Sprite2D" parent="CanvasLayer"]
 visible = false
-position = Vector2(568, 340)
-scale = Vector2(0.569069, 0.5690691)
+position = Vector2(510.13214, 305.7269)
+scale = Vector2(0.38951355, 0.3895137)
 texture = ExtResource("16_264po")
+script = ExtResource("23_suyxu")
 
 [node name="Timer" type="Timer" parent="CanvasLayer"]
 wait_time = 3.0
@@ -385,6 +370,28 @@ texture = ExtResource("14_ca42v")
 position = Vector2(-220, 70)
 color = Color(0.3180198, 0.31801978, 0.31801975, 1)
 
+[node name="rain" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_p57ef")
+volume_db = -17.954
+autoplay = true
+parameters/looping = false
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("23_bt5mj")
+autoplay = true
+parameters/looping = false
+
+[node name="thunder" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_u5sy4")
+volume_db = -6.599
+autoplay = true
+parameters/looping = false
+
+[node name="SceneTransitionAnimation" parent="." instance=ExtResource("30_sgl2t")]
+visible = false
+position = Vector2(1, 0)
+
+[connection signal="body_entered" from="OutsideDetect" to="." method="_on_outside_detect_body_entered"]
 [connection signal="mouse_entered" from="Interactive/Window Area" to="Interactive/Window Area" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Interactive/Window Area" to="Interactive/Window Area" method="_on_mouse_exited"]
 [connection signal="mouse_entered" from="Interactive/Window Area/Window/Window" to="Interactive/Window Area/Window/Window" method="_on_mouse_entered"]

@@ -1,9 +1,8 @@
 extends CharacterBody2D
-
+class_name Player
 
 const SPEED = 400.0
 const JUMP_VELOCITY = 0.0
-
 
 enum PlayerState {
 	Moving,
@@ -68,14 +67,3 @@ func _input(event: InputEvent) -> void:
 			camera_2d.zoom = Vector2(max_zoom, max_zoom)
 		elif event.is_action_pressed("-"):
 			camera_2d.zoom = Vector2(min_zoom, min_zoom)
-
-func _on_fridge_body_entered(body: Node2D) -> void:
-	player_state = PlayerState.InFridge
-	dialog.visible = true
-	dialog.add_theme_font_size_override("font_size", 12)
-	dialog.text = "...Nothing but a half-eaten apple..."
-
-
-func _on_fridge_body_exited(body: Node2D) -> void:
-	player_state = PlayerState.Moving
-	dialog.visible = false
