@@ -10,7 +10,7 @@ func _on_outside_detect_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D:
 		scene_transition_animation.play("fadein")
 		await get_tree().create_timer(0.5).timeout
-		get_tree().change_scene_to_file("res://scenes/busstop.tscn")
+		Global.goto_scene("res://scenes/busstop.tscn")
 
 func _ready():
 	scene_transition_animation.get_parent().get_node("ColorRect").color.a = 255

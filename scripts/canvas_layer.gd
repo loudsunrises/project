@@ -5,7 +5,7 @@ extends CanvasLayer
 @onready var timer: Timer = $Timer
 
 func _ready() -> void:
-	SignalBus.update_text.connect(_update_text)
+	Global.update_text.connect(_update_text)
 	
 func _update_text(string : String):
 	label.text = string

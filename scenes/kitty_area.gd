@@ -5,7 +5,7 @@ extends Area2D
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("left_click") and hovering_object:
-		SignalBus.update_text.emit(message_text)
+		Global.update_text.emit(message_text)
 		
 var pointer = load("res://sprites/pointer.png")
 var clicker = load("res://sprites/Clicker.png")

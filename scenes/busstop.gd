@@ -10,7 +10,10 @@ func _on_inside_detect_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D:
 		scene_transition_animation.play("fadein")
 		await get_tree().create_timer(0.5).timeout
-		get_tree().change_scene_to_file("res://scenes/game.tscn")
+		Global.goto_scene("res://scenes/game.tscn")
 
 var pointer = load("res://sprites/pointer.png")
 var clicker = load("res://sprites/Clicker.png")
+
+func _on_magnifying_phase_2():
+	print("here")

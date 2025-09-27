@@ -1,12 +1,12 @@
 extends Area2D
 @onready var hovering_object : bool = false
+@onready var magnifying: Area2D = $"."
+@onready var inside_detect: Area2D = $"../InsideDetect"
 
 var pointer = load("res://sprites/pointer.png")
 var clicker = load("res://sprites/Clicker.png")
 
-signal look_close
 var pickup = false
-var look_close_zone
 
 func _on_mouse_entered() -> void:
 	Input.set_custom_mouse_cursor(clicker)
@@ -20,4 +20,9 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("left_click") and hovering_object:
 			if pickup == false:
 				pickup = true
-				$Sprite.queue.free()
+				magnifying.hide()
+				Global.phase2.emit()
+
+
+func _on_bus_stop_phase_2() -> void:
+	pass # Replace with function body.
