@@ -5,6 +5,8 @@ signal update_dialog_text(string : String)
 signal phase2
 
 var current_scene = null
+var player_position_when_coming_inside=Vector2(2000,-189)
+var player_coming_inside = false
 
 signal magnifier_pick_up
 
