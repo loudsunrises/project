@@ -1,8 +1,19 @@
 extends Node
-signal update_text(string : String)
+
+signal update_dialog_text(string : String)
+
 signal phase2
 
 var current_scene = null
+
+signal magnifier_pick_up
+
+var is_magnifier_pick_up := false:
+	set(value):
+		is_magnifier_pick_up = value
+		if value == true:
+			magnifier_pick_up.emit()
+
 
 func _ready():
 	var root = get_tree().root

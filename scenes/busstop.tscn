@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bmgfabx2nd453"]
+[gd_scene load_steps=23 format=3 uid="uid://bmgfabx2nd453"]
 
 [ext_resource type="Script" uid="uid://cdghhlwd28ukr" path="res://scenes/busstop.gd" id="1_eru8g"]
 [ext_resource type="PackedScene" uid="uid://btamyw4txrvit" path="res://scenes/player.tscn" id="1_hr2fb"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://bdr40y7vte066" path="res://scenes/magnifying.gd" id="10_uk1l0"]
 [ext_resource type="Texture2D" uid="uid://b1j1b2k83cjxs" path="res://sprites/magnifying glass.png" id="11_vca46"]
 [ext_resource type="Texture2D" uid="uid://dqduqmdk4gijm" path="res://sprites/rain3.png" id="12_vca46"]
+[ext_resource type="PackedScene" uid="uid://cb1mvlw5mwov2" path="res://scenes/item_status_bar.tscn" id="13_7q8y5"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4jjng"]
 distance = 3.0
@@ -161,6 +162,8 @@ metadata/_edit_use_anchors_ = true
 position = Vector2(-294.99994, -344)
 scale = Vector2(0.72769713, 0.7276971)
 texture = ExtResource("12_vca46")
+
+[node name="ItemStatusBar" parent="." instance=ExtResource("13_7q8y5")]
 
 [connection signal="body_entered" from="InsideDetect" to="." method="_on_inside_detect_body_entered"]
 [connection signal="mouse_entered" from="magnifying" to="magnifying" method="_on_mouse_entered"]
